@@ -13,10 +13,12 @@
 {
 	NSMutableArray *gamesArray;
 	UITableViewCell *nibLoadedCell;
-	//UISegmentedControl *sortControl; //later use
+	UISegmentedControl *sortControl; //later use
 }
 
 @property (nonatomic,retain) IBOutlet UITableViewCell *nibLoadedCell;
-//@property (nonatomic,retain) IBOutlet UISegmentedControl *sortControl;
+@property (nonatomic,retain) IBOutlet UISegmentedControl *sortControl;
+
+- (IBAction) handleSortChanged;
 
 @end

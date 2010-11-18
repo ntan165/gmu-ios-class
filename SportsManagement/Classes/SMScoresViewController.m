@@ -8,9 +8,10 @@
 
 #import "SMScoresViewController.h"
 
-
 @implementation SMScoresViewController
 
+@synthesize nibLoadedCell;
+//@synthesize sortControl;
 
 #pragma mark -
 #pragma mark Initialization
@@ -30,14 +31,47 @@
 #pragma mark -
 #pragma mark View lifecycle
 
-/*
-- (void)viewDidLoad {
-    [super viewDidLoad];
 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+- (void)viewDidLoad 
+{
+    [super viewDidLoad];
+	gamesArray = [[NSMutableArray alloc] init];
+	
+	//Load data - fake data for now , get data from JSON later
+	
+	SMGame *aGame = [[SMGame alloc] init];
+	aGame.date = @"15-March-2010 08:00:00 PM";
+	aGame.home_name = @"GMU";
+	aGame.away_name = @"VCU";
+	aGame.home_score = @"96";
+	aGame.away_score = @"101";
+	aGame.sport = @"Basketball";
+	[gamesArray addObject: aGame];
+	[aGame release];
+	
+	SMGame *aGame1 = [[SMGame alloc] init];
+	aGame1.date = @"01-April-2011 07:00:00 PM";
+	aGame1.home_name = @"UVA";
+	aGame1.away_name = @"GMU";
+	aGame1.home_score = @"60";
+	aGame1.away_score = @"75";
+	aGame1.sport = @"Basketball";
+	[gamesArray addObject: aGame1];
+	[aGame1 release];
+	
+	SMGame *aGame2 = [[SMGame alloc] init];
+	aGame2.date = @"20-August-2011 04:00:00 PM";
+	aGame2.home_name = @"GMU";
+	aGame2.away_name = @"DC United";
+	aGame2.home_score = @"0";
+	aGame2.away_score = @"10";
+	aGame2.sport = @"Soccer";
+	[gamesArray addObject: aGame2];
+	[aGame2 release];
+	
+	
 }
-*/
+
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -73,13 +107,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    return 0;
+   return [gamesArray count];
 }
 
 
@@ -89,12 +122,33 @@
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
+    if (cell == nil) 
+	{
+		[[NSBundle mainBundle] loadNibNamed:@"SMScoreTableCell" owner:self options:NULL];
+		cell = nibLoadedCell;
+    }   
+	
     // Configure the cell...
-    
+    SMGame *aGame = [gamesArray objectAtIndex:indexPath.row];
+	
+	UILabel *sportLabel = (UILabel*) [cell viewWithTag:1];
+	sportLabel.text = aGame.sport;
+	
+	UILabel *dateLabel = (UILabel*) [cell viewWithTag:2];
+	dateLabel.text = aGame.date;
+	
+	UILabel *homeTeamLabel = (UILabel*) [cell viewWithTag:3];
+	homeTeamLabel.text = aGame.home_name;
+	
+	UILabel *awayTeamLabel = (UILabel*) [cell viewWithTag:4];
+	awayTeamLabel.text = aGame.away_name;
+	
+	UILabel *homeScoreLabel = (UILabel*) [cell viewWithTag:5];
+	homeScoreLabel.text = aGame.home_score;
+	
+	UILabel *awayScoreLabel = (UILabel*) [cell viewWithTag:6];
+	awayScoreLabel.text = aGame.away_score;
+	
     return cell;
 }
 

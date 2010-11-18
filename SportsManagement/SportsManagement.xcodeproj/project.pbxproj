@@ -11,6 +11,8 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		279BCF62128C8DF600100CE0 /* SMGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 279BCF61128C8DF600100CE0 /* SMGame.m */; };
+		279BCFB31294AEAF00100CE0 /* SMScoreTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 279BCFB21294AEAF00100CE0 /* SMScoreTableCell.xib */; };
 		282CCBFE0DB6C98000C4EA27 /* Schedule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 282CCBFD0DB6C98000C4EA27 /* Schedule.xib */; };
 		2840D7CE1179279E00D7F93C /* Profile.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2840D7CD1179279E00D7F93C /* Profile.xib */; };
 		288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
@@ -32,6 +34,9 @@
 		1D3623250D0F684500981E51 /* SportsManagementAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportsManagementAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* SportsManagement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportsManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		279BCF60128C8DF600100CE0 /* SMGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMGame.h; sourceTree = "<group>"; };
+		279BCF61128C8DF600100CE0 /* SMGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMGame.m; sourceTree = "<group>"; };
+		279BCFB21294AEAF00100CE0 /* SMScoreTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SMScoreTableCell.xib; sourceTree = "<group>"; };
 		282CCBFD0DB6C98000C4EA27 /* Schedule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Schedule.xib; sourceTree = "<group>"; };
 		2840D7CD1179279E00D7F93C /* Profile.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Profile.xib; sourceTree = "<group>"; };
 		288765070DF74369002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -140,6 +145,7 @@
 				282CCBFD0DB6C98000C4EA27 /* Schedule.xib */,
 				9193B1621280DDBD00C1F08D /* Scores.xib */,
 				9193B1641280DDC800C1F08D /* Standings.xib */,
+				279BCFB21294AEAF00100CE0 /* SMScoreTableCell.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -194,6 +200,8 @@
 			children = (
 				9193B1761280DE9700C1F08D /* SMScoresViewController.h */,
 				9193B1771280DE9700C1F08D /* SMScoresViewController.m */,
+				279BCF60128C8DF600100CE0 /* SMGame.h */,
+				279BCF61128C8DF600100CE0 /* SMGame.m */,
 			);
 			name = Scores;
 			sourceTree = "<group>";
@@ -262,6 +270,7 @@
 				2840D7CE1179279E00D7F93C /* Profile.xib in Resources */,
 				9193B1631280DDBD00C1F08D /* Scores.xib in Resources */,
 				9193B1651280DDC800C1F08D /* Standings.xib in Resources */,
+				279BCFB31294AEAF00100CE0 /* SMScoreTableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +289,7 @@
 				9193B17E1280DEC600C1F08D /* SMProfileViewController.m in Sources */,
 				9193B1981280E41C00C1F08D /* CMLeagueViewController.m in Sources */,
 				9193B19B1280E42A00C1F08D /* CMTeamViewController.m in Sources */,
+				279BCF62128C8DF600100CE0 /* SMGame.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

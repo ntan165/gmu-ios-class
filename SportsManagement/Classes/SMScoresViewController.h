@@ -7,10 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SMGame.h"
 
-
-@interface SMScoresViewController : UITableViewController {
-
+@interface SMScoresViewController : UITableViewController 
+{
+	NSMutableArray *gamesArray;
+	UITableViewCell *nibLoadedCell;
+	//UISegmentedControl *sortControl; //later use
 }
+
+@property (nonatomic,retain) IBOutlet UITableViewCell *nibLoadedCell;
+//@property (nonatomic,retain) IBOutlet UISegmentedControl *sortControl;
 
 @end

@@ -130,9 +130,9 @@
 	
     // Configure the cell...
 	
-	switch(sortControl.selectedSegmentIndex)
-	{
-		case 0: // This is the current season
+	//switch(sortControl.selectedSegmentIndex)
+	//{
+	//	case 0: // This is the current season
 			
 			SMGame *aGame = [gamesArray objectAtIndex:indexPath.row];
 	
@@ -154,9 +154,9 @@
 			UILabel *awayScoreLabel = (UILabel*) [cell viewWithTag:6];
 			awayScoreLabel.text = aGame.away_score;
 			
-		case 1: // This is all seasons, display a list of leagues
+		//case 1: // This is all seasons, display a list of leagues
 			
-	}
+	//}
 	
     return cell;
 }

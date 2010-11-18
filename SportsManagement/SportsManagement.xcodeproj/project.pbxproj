@@ -26,6 +26,8 @@
 		9193B17E1280DEC600C1F08D /* SMProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9193B17D1280DEC600C1F08D /* SMProfileViewController.m */; };
 		9193B1981280E41C00C1F08D /* CMLeagueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9193B1971280E41C00C1F08D /* CMLeagueViewController.m */; };
 		9193B19B1280E42A00C1F08D /* CMTeamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9193B19A1280E42A00C1F08D /* CMTeamViewController.m */; };
+		91CBD0831295BFCE00FAC9DC /* SMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91CBD0811295BFCE00FAC9DC /* SMLoginViewController.m */; };
+		91CBD0841295BFCE00FAC9DC /* Login.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91CBD0821295BFCE00FAC9DC /* Login.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +61,9 @@
 		9193B1971280E41C00C1F08D /* CMLeagueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMLeagueViewController.m; sourceTree = "<group>"; };
 		9193B1991280E42A00C1F08D /* CMTeamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMTeamViewController.h; sourceTree = "<group>"; };
 		9193B19A1280E42A00C1F08D /* CMTeamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMTeamViewController.m; sourceTree = "<group>"; };
+		91CBD0801295BFCE00FAC9DC /* SMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMLoginViewController.h; sourceTree = "<group>"; };
+		91CBD0811295BFCE00FAC9DC /* SMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMLoginViewController.m; sourceTree = "<group>"; };
+		91CBD0821295BFCE00FAC9DC /* Login.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Login.xib; path = Classes/Login.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				28AD73870D9D96C1002E5188 /* MainWindow.xib */,
+				91CBD0821295BFCE00FAC9DC /* Login.xib */,
 				2840D7CD1179279E00D7F93C /* Profile.xib */,
 				282CCBFD0DB6C98000C4EA27 /* Schedule.xib */,
 				9193B1621280DDBD00C1F08D /* Scores.xib */,
@@ -164,6 +170,8 @@
 				9193B1971280E41C00C1F08D /* CMLeagueViewController.m */,
 				9193B1991280E42A00C1F08D /* CMTeamViewController.h */,
 				9193B19A1280E42A00C1F08D /* CMTeamViewController.m */,
+				91CBD0801295BFCE00FAC9DC /* SMLoginViewController.h */,
+				91CBD0811295BFCE00FAC9DC /* SMLoginViewController.m */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -198,10 +206,10 @@
 		9193B1601280DB9100C1F08D /* Scores */ = {
 			isa = PBXGroup;
 			children = (
-				9193B1761280DE9700C1F08D /* SMScoresViewController.h */,
-				9193B1771280DE9700C1F08D /* SMScoresViewController.m */,
 				279BCF60128C8DF600100CE0 /* SMGame.h */,
 				279BCF61128C8DF600100CE0 /* SMGame.m */,
+				9193B1761280DE9700C1F08D /* SMScoresViewController.h */,
+				9193B1771280DE9700C1F08D /* SMScoresViewController.m */,
 			);
 			name = Scores;
 			sourceTree = "<group>";
@@ -271,6 +279,7 @@
 				9193B1631280DDBD00C1F08D /* Scores.xib in Resources */,
 				9193B1651280DDC800C1F08D /* Standings.xib in Resources */,
 				279BCFB31294AEAF00100CE0 /* SMScoreTableCell.xib in Resources */,
+				91CBD0841295BFCE00FAC9DC /* Login.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +299,7 @@
 				9193B1981280E41C00C1F08D /* CMLeagueViewController.m in Sources */,
 				9193B19B1280E42A00C1F08D /* CMTeamViewController.m in Sources */,
 				279BCF62128C8DF600100CE0 /* SMGame.m in Sources */,
+				91CBD0831295BFCE00FAC9DC /* SMLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

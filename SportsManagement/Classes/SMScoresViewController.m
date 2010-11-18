@@ -11,7 +11,7 @@
 @implementation SMScoresViewController
 
 @synthesize nibLoadedCell;
-//@synthesize sortControl;
+@synthesize sortControl;
 
 #pragma mark -
 #pragma mark Initialization
@@ -129,25 +129,34 @@
     }   
 	
     // Configure the cell...
-    SMGame *aGame = [gamesArray objectAtIndex:indexPath.row];
 	
-	UILabel *sportLabel = (UILabel*) [cell viewWithTag:1];
-	sportLabel.text = aGame.sport;
+	switch(sortControl.selectedSegmentIndex)
+	{
+		case 0: // This is the current season
+			
+			SMGame *aGame = [gamesArray objectAtIndex:indexPath.row];
 	
-	UILabel *dateLabel = (UILabel*) [cell viewWithTag:2];
-	dateLabel.text = aGame.date;
+			UILabel *sportLabel = (UILabel*) [cell viewWithTag:1];
+			sportLabel.text = aGame.sport;
 	
-	UILabel *homeTeamLabel = (UILabel*) [cell viewWithTag:3];
-	homeTeamLabel.text = aGame.home_name;
+			UILabel *dateLabel = (UILabel*) [cell viewWithTag:2];
+			dateLabel.text = aGame.date;
 	
-	UILabel *awayTeamLabel = (UILabel*) [cell viewWithTag:4];
-	awayTeamLabel.text = aGame.away_name;
+			UILabel *homeTeamLabel = (UILabel*) [cell viewWithTag:3];
+			homeTeamLabel.text = aGame.home_name;
 	
-	UILabel *homeScoreLabel = (UILabel*) [cell viewWithTag:5];
-	homeScoreLabel.text = aGame.home_score;
+			UILabel *awayTeamLabel = (UILabel*) [cell viewWithTag:4];
+			awayTeamLabel.text = aGame.away_name;
 	
-	UILabel *awayScoreLabel = (UILabel*) [cell viewWithTag:6];
-	awayScoreLabel.text = aGame.away_score;
+			UILabel *homeScoreLabel = (UILabel*) [cell viewWithTag:5];
+			homeScoreLabel.text = aGame.home_score;
+	
+			UILabel *awayScoreLabel = (UILabel*) [cell viewWithTag:6];
+			awayScoreLabel.text = aGame.away_score;
+			
+		case 1: // This is all seasons, display a list of leagues
+			
+	}
 	
     return cell;
 }
@@ -155,7 +164,7 @@
 
 - (IBAction) handleSortChanged
 {
-	
+	NSLog(@"index is %d", sortControl.selectedSegmentIndex);
 	[self.tableView reloadData];
 }
 

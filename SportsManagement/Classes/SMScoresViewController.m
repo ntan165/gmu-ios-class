@@ -7,11 +7,12 @@
 //
 
 #import "SMScoresViewController.h"
+#import "SMAllScoresViewController.h"
 
 @implementation SMScoresViewController
 
 @synthesize nibLoadedCell;
-@synthesize sortControl;
+@synthesize allButton;
 
 #pragma mark -
 #pragma mark Initialization
@@ -115,6 +116,13 @@
    return [gamesArray count];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
+{
+	if(section == 0)
+		return @"Current Season";
+	else
+		return @"";
+}
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -129,43 +137,33 @@
     }   
 	
     // Configure the cell...
+	SMGame *aGame = [gamesArray objectAtIndex:indexPath.row];
 	
-	//switch(sortControl.selectedSegmentIndex)
-	//{
-	//	case 0: // This is the current season
-			
-			SMGame *aGame = [gamesArray objectAtIndex:indexPath.row];
+	UILabel *sportLabel = (UILabel*) [cell viewWithTag:1];
+	sportLabel.text = aGame.sport;
 	
-			UILabel *sportLabel = (UILabel*) [cell viewWithTag:1];
-			sportLabel.text = aGame.sport;
+	UILabel *dateLabel = (UILabel*) [cell viewWithTag:2];
+	dateLabel.text = aGame.date;
 	
-			UILabel *dateLabel = (UILabel*) [cell viewWithTag:2];
-			dateLabel.text = aGame.date;
+	UILabel *homeTeamLabel = (UILabel*) [cell viewWithTag:3];
+	homeTeamLabel.text = aGame.home_name;
 	
-			UILabel *homeTeamLabel = (UILabel*) [cell viewWithTag:3];
-			homeTeamLabel.text = aGame.home_name;
+	UILabel *awayTeamLabel = (UILabel*) [cell viewWithTag:4];
+	awayTeamLabel.text = aGame.away_name;
+	UILabel *homeScoreLabel = (UILabel*) [cell viewWithTag:5];
+	homeScoreLabel.text = aGame.home_score;
 	
-			UILabel *awayTeamLabel = (UILabel*) [cell viewWithTag:4];
-			awayTeamLabel.text = aGame.away_name;
-	
-			UILabel *homeScoreLabel = (UILabel*) [cell viewWithTag:5];
-			homeScoreLabel.text = aGame.home_score;
-	
-			UILabel *awayScoreLabel = (UILabel*) [cell viewWithTag:6];
-			awayScoreLabel.text = aGame.away_score;
-			
-		//case 1: // This is all seasons, display a list of leagues
-			
-	//}
+	UILabel *awayScoreLabel = (UILabel*) [cell viewWithTag:6];
+	awayScoreLabel.text = aGame.away_score;
 	
     return cell;
 }
 
 
-- (IBAction) handleSortChanged
+- (IBAction) handleAllTapped
 {
-	NSLog(@"index is %d", sortControl.selectedSegmentIndex);
-	[self.tableView reloadData];
+	SMAllScoresViewController *vc = [[SMAllScoresViewController alloc] init];
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
 /*

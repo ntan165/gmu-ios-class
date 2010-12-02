@@ -13,12 +13,12 @@
 {
 	NSMutableArray *gamesArray;
 	UITableViewCell *nibLoadedCell;
-	UISegmentedControl *sortControl; //later use
+	UIBarButtonItem *allButton;
 }
 
 @property (nonatomic,retain) IBOutlet UITableViewCell *nibLoadedCell;
-@property (nonatomic,retain) IBOutlet UISegmentedControl *sortControl;
+@property (nonatomic,retain) IBOutlet UIBarButtonItem *allButton;
 
-- (IBAction) handleSortChanged;
+- (IBAction) handleAllTapped;
 
 @end

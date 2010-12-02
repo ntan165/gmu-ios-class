@@ -14,6 +14,7 @@
 		272CA82212A70D630090052F /* SMAllScoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 272CA82112A70D630090052F /* SMAllScoresViewController.m */; };
 		279BCF62128C8DF600100CE0 /* SMGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 279BCF61128C8DF600100CE0 /* SMGame.m */; };
 		279BCFB31294AEAF00100CE0 /* SMScoreTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 279BCFB21294AEAF00100CE0 /* SMScoreTableCell.xib */; };
+		279FFB8812A822AA00213675 /* SMSeasonsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 279FFB8712A822AA00213675 /* SMSeasonsViewController.m */; };
 		282CCBFE0DB6C98000C4EA27 /* Schedule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 282CCBFD0DB6C98000C4EA27 /* Schedule.xib */; };
 		2840D7CE1179279E00D7F93C /* Profile.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2840D7CD1179279E00D7F93C /* Profile.xib */; };
 		288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
@@ -42,6 +43,8 @@
 		279BCF60128C8DF600100CE0 /* SMGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMGame.h; sourceTree = "<group>"; };
 		279BCF61128C8DF600100CE0 /* SMGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMGame.m; sourceTree = "<group>"; };
 		279BCFB21294AEAF00100CE0 /* SMScoreTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SMScoreTableCell.xib; sourceTree = "<group>"; };
+		279FFB8612A822AA00213675 /* SMSeasonsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSeasonsViewController.h; sourceTree = "<group>"; };
+		279FFB8712A822AA00213675 /* SMSeasonsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSeasonsViewController.m; sourceTree = "<group>"; };
 		282CCBFD0DB6C98000C4EA27 /* Schedule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Schedule.xib; sourceTree = "<group>"; };
 		2840D7CD1179279E00D7F93C /* Profile.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Profile.xib; sourceTree = "<group>"; };
 		288765070DF74369002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -215,6 +218,8 @@
 				279BCF61128C8DF600100CE0 /* SMGame.m */,
 				9193B1761280DE9700C1F08D /* SMScoresViewController.h */,
 				9193B1771280DE9700C1F08D /* SMScoresViewController.m */,
+				279FFB8612A822AA00213675 /* SMSeasonsViewController.h */,
+				279FFB8712A822AA00213675 /* SMSeasonsViewController.m */,
 			);
 			name = Scores;
 			sourceTree = "<group>";
@@ -306,6 +311,7 @@
 				279BCF62128C8DF600100CE0 /* SMGame.m in Sources */,
 				91CBD0831295BFCE00FAC9DC /* SMLoginViewController.m in Sources */,
 				272CA82212A70D630090052F /* SMAllScoresViewController.m in Sources */,
+				279FFB8812A822AA00213675 /* SMSeasonsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

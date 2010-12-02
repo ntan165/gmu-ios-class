@@ -1,33 +1,39 @@
 //
-//  SMAllScoresViewController.m
+//  SMSeasonsViewController.m
 //  SportsManagement
 //
-//  Created by Tan Nguyen on 12/1/10.
+//  Created by Tan Nguyen on 12/2/10.
 //  Copyright 2010 IT315. All rights reserved.
 //
 
-#import "SMAllScoresViewController.h"
-#import <YAJLIOS/YAJLIOS.h>
 #import "SMSeasonsViewController.h"
+#import <YAJLIOS/YAJLIOS.h>
 #import "SMLoginViewController.h"
 
-//#define LEAGUES_JSON @"http://nicsports.railsplayground.net/leagues.json"
+//#define SEASONS_JSON @"http://nicsports.railsplayground.net/leagues/%@/seasons.json"
 
-#define LEAGUES_JSON @"http://dl.dropbox.com/u/11760590/leagues.json"
+#define SEASONS_JSON @"http://dl.dropbox.com/u/11760590/leagues/%@/seasons.json"
 
-@implementation SMAllScoresViewController
+@implementation SMSeasonsViewController
 @synthesize results;
+@synthesize leagueId;
+
+#pragma mark -
+#pragma mark Initialization
 
 - (void)viewDidLoad
 {
-	self.navigationItem.title = @"Pick a league";
+	self.navigationItem.title = @"Pick a season";
     //NETWORK_ON    
     responseData = [[NSMutableData alloc] init];
     self.results = [NSArray array];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:LEAGUES_JSON]];
+	NSString *url = [NSString stringWithFormat:SEASONS_JSON,self.leagueId];
+	NSLog(@"Season url string = %@", url);
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
 	[NSURLConnection connectionWithRequest:request delegate:self];
 }
+
 
 #pragma mark NSURLConnection Delegate
 
@@ -98,12 +104,10 @@
     // Configure the cell...
 	NSDictionary *data = [results objectAtIndex:indexPath.row];
 	
-    cell.textLabel.text = [data objectForKey:@"name"];
+    cell.textLabel.text = [NSString stringWithFormat:@"Season %@",[data objectForKey:@"id"]];
+	cell.detailTextLabel.text = [NSString stringWithFormat:@"Start date: %@ - End date: %@",[data objectForKey:@"start_date"],[data objectForKey:@"end_date"]];
     
-	//cell.detailTextLabel.text = [data valueForKeyPath:@"sport"];
-	cell.detailTextLabel.text = [NSString stringWithFormat:@"Sport: %@ - Gender: %@",[data valueForKeyPath:@"sport"],[data valueForKeyPath:@"gender_type"]];
-    return cell;
-}
+	return cell;}
 
 
 /*
@@ -151,12 +155,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-   	SMSeasonsViewController *vc = [[SMSeasonsViewController alloc] init];
+   	/*
+	SMSeasonsViewController *vc = [[SMSeasonsViewController alloc] init];
 	NSDictionary *temp = [results objectAtIndex:indexPath.row];
     vc.leagueId = [temp objectForKey:@"id"];
 	NSLog(@"Passing leagueId = %@",vc.leagueId);
 	[self.navigationController pushViewController:vc animated:YES];
 	[vc release];
+	 */
+	
+	NSDictionary *temp = [results objectAtIndex:indexPath.row];
+	NSLog(@"Passing leagueId = %@",self.leagueId);
+	NSLog(@"Passing seasonId = %@",[temp objectForKey:@"id"]);
 }
 
 

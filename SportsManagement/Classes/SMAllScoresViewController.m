@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad
 {
-	self.navigationItem.title = @"Pick a league";
+	self.navigationItem.title = @"Leagues";
     //NETWORK_ON    
     responseData = [[NSMutableData alloc] init];
     self.results = [NSArray array];

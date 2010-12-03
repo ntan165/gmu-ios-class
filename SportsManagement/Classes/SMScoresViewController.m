@@ -8,100 +8,88 @@
 
 #import "SMScoresViewController.h"
 #import "SMAllScoresViewController.h"
+#import <YAJLIOS/YAJLIOS.h>
+#import "SMLoginViewController.h"
+
+#define CURRENT_SCORES_JSON @"http://dl.dropbox.com/u/11760590/game_results.json"
+#define SCORES_JSON @"http://dl.dropbox.com/u/11760590/leagues/%@/seasons/%@/game_results.json"
 
 @implementation SMScoresViewController
 
 @synthesize nibLoadedCell;
 @synthesize allButton;
-
-#pragma mark -
-#pragma mark Initialization
-
-/*
-- (id)initWithStyle:(UITableViewStyle)style {
-    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization.
-    }
-    return self;
-}
-*/
-
-
-#pragma mark -
-#pragma mark View lifecycle
-
+@synthesize leagueId;
+@synthesize seasonId;
+@synthesize results;
 
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
-	gamesArray = [[NSMutableArray alloc] init];
+	self.navigationItem.title = @"Scores";
 	
-	//Load data - fake data for now , get data from JSON later
+    //NETWORK_ON    
+    responseData = [[NSMutableData alloc] init];
+    self.results = [NSArray array];
 	
-	SMGame *aGame = [[SMGame alloc] init];
-	aGame.date = @"15-March-2010 08:00:00 PM";
-	aGame.home_name = @"GMU";
-	aGame.away_name = @"VCU";
-	aGame.home_score = @"96";
-	aGame.away_score = @"101";
-	aGame.sport = @"Basketball";
-	[gamesArray addObject: aGame];
-	[aGame release];
-	
-	SMGame *aGame1 = [[SMGame alloc] init];
-	aGame1.date = @"01-April-2011 07:00:00 PM";
-	aGame1.home_name = @"UVA";
-	aGame1.away_name = @"GMU";
-	aGame1.home_score = @"60";
-	aGame1.away_score = @"75";
-	aGame1.sport = @"Basketball";
-	[gamesArray addObject: aGame1];
-	[aGame1 release];
-	
-	SMGame *aGame2 = [[SMGame alloc] init];
-	aGame2.date = @"20-August-2011 04:00:00 PM";
-	aGame2.home_name = @"GMU";
-	aGame2.away_name = @"DC United";
-	aGame2.home_score = @"0";
-	aGame2.away_score = @"10";
-	aGame2.sport = @"Soccer";
-	[gamesArray addObject: aGame2];
-	[aGame2 release];
-	
-	
+	NSString *url;
+	NSURLRequest *request;
+	if ( (leagueId == nil) || (seasonId == nil) ) //Current scores
+	{
+		request = [NSURLRequest requestWithURL:[NSURL URLWithString:CURRENT_SCORES_JSON]];
+		[NSURLConnection connectionWithRequest:request delegate:self];
+	}
+	else //All scores - Scores within a particular season & league
+	{
+		url = [NSString stringWithFormat:SCORES_JSON,leagueId,seasonId];
+		NSLog(@"Season url string = %@", url);
+		request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+		[NSURLConnection connectionWithRequest:request delegate:self];	
+	}
 }
 
 
-/*
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-*/
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
+#pragma mark NSURLConnection Delegate
 
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+	SMLoginViewController *vc = [[SMLoginViewController alloc] initWithChallenge:challenge];
+	[self presentModalViewController:vc animated:YES];
+	[vc release];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    [responseData setLength:0];
+}
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [responseData appendData:data];
+}
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    //NETWORK_OFF
+	
+    self.results = [responseData yajl_JSON];
+    NSLog(@"result=%@", self.results);
+    
+	// In case an error is received, display the error using an alertview.
+    if (self.results == nil || [self.results isKindOfClass:[NSDictionary class]]) 
+	{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[(NSDictionary *)self.results objectForKey:@"error"] delegate:self
+                                              cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alert show];
+        [alert release];
+        return;
+    }
+	
+    [self.tableView reloadData];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    //NETWORK_OFF
+    NSLog(@"Response failed. Reason: %@", error);
+}
 
 #pragma mark -
 #pragma mark Table view data source
@@ -113,15 +101,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-   return [gamesArray count];
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
-{
-	if(section == 0)
-		return @"Current Season";
-	else
-		return @"";
+    return [results count];
 }
 
 // Customize the appearance of table view cells.
@@ -137,24 +117,26 @@
     }   
 	
     // Configure the cell...
-	SMGame *aGame = [gamesArray objectAtIndex:indexPath.row];
+	NSDictionary *data = [results objectAtIndex:indexPath.row];
+	//[NSString stringWithFormat:@"Season %@",[data objectForKey:@"id"]];
 	
 	UILabel *sportLabel = (UILabel*) [cell viewWithTag:1];
-	sportLabel.text = aGame.sport;
+	sportLabel.text = [data objectForKey:@"sport"];
 	
 	UILabel *dateLabel = (UILabel*) [cell viewWithTag:2];
-	dateLabel.text = aGame.date;
+	dateLabel.text = [data objectForKey:@"date"];
 	
 	UILabel *homeTeamLabel = (UILabel*) [cell viewWithTag:3];
-	homeTeamLabel.text = aGame.home_name;
+	homeTeamLabel.text = [data objectForKey:@"home_name"];
 	
 	UILabel *awayTeamLabel = (UILabel*) [cell viewWithTag:4];
-	awayTeamLabel.text = aGame.away_name;
+	awayTeamLabel.text = [data objectForKey:@"away_name"];
+	
 	UILabel *homeScoreLabel = (UILabel*) [cell viewWithTag:5];
-	homeScoreLabel.text = aGame.home_score;
+	homeScoreLabel.text = [NSString stringWithFormat:@"%@",[data objectForKey:@"home_score"]];
 	
 	UILabel *awayScoreLabel = (UILabel*) [cell viewWithTag:6];
-	awayScoreLabel.text = aGame.away_score;
+	awayScoreLabel.text = [NSString stringWithFormat:@"%@",[data objectForKey:@"away_score"]];
 	
     return cell;
 }
@@ -219,6 +201,7 @@
     [detailViewController release];
     */
 }
+
 
 
 #pragma mark -

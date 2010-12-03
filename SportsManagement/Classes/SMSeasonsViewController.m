@@ -9,6 +9,7 @@
 #import "SMSeasonsViewController.h"
 #import <YAJLIOS/YAJLIOS.h>
 #import "SMLoginViewController.h"
+#import "SMScoresViewController.h"
 
 //#define SEASONS_JSON @"http://nicsports.railsplayground.net/leagues/%@/seasons.json"
 
@@ -23,7 +24,7 @@
 
 - (void)viewDidLoad
 {
-	self.navigationItem.title = @"Pick a season";
+	self.navigationItem.title = @"Seasons";
     //NETWORK_ON    
     responseData = [[NSMutableData alloc] init];
     self.results = [NSArray array];
@@ -155,18 +156,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-   	/*
-	SMSeasonsViewController *vc = [[SMSeasonsViewController alloc] init];
-	NSDictionary *temp = [results objectAtIndex:indexPath.row];
-    vc.leagueId = [temp objectForKey:@"id"];
-	NSLog(@"Passing leagueId = %@",vc.leagueId);
-	[self.navigationController pushViewController:vc animated:YES];
-	[vc release];
-	 */
-	
 	NSDictionary *temp = [results objectAtIndex:indexPath.row];
 	NSLog(@"Passing leagueId = %@",self.leagueId);
 	NSLog(@"Passing seasonId = %@",[temp objectForKey:@"id"]);
+	
+	SMScoresViewController *vc = [[SMScoresViewController alloc] init];
+	vc.leagueId = self.leagueId;
+	vc.seasonId = [temp objectForKey:@"id"];
+	[self.navigationController pushViewController:vc animated:YES];
+	[vc release];
 }
 
 

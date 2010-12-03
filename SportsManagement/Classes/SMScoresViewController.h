@@ -7,17 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SMGame.h"
 
 @interface SMScoresViewController : UITableViewController 
 {
-	NSMutableArray *gamesArray;
+	NSString *leagueId;
+	NSString *seasonId;
+
 	UITableViewCell *nibLoadedCell;
 	UIBarButtonItem *allButton;
+
+    NSMutableData *responseData;
+    NSArray *results;
 }
 
 @property (nonatomic,retain) IBOutlet UITableViewCell *nibLoadedCell;
 @property (nonatomic,retain) IBOutlet UIBarButtonItem *allButton;
+@property (nonatomic,retain) NSString *leagueId;
+@property (nonatomic,retain) NSString *seasonId;
+@property (nonatomic,retain) NSArray *results;
 
 - (IBAction) handleAllTapped;
 

@@ -11,9 +11,9 @@
 #import "SMLoginViewController.h"
 #import "SMScoresViewController.h"
 
-//#define SEASONS_JSON @"http://nicsports.railsplayground.net/leagues/%@/seasons.json"
+#define SEASONS_JSON @"http://nicsports.railsplayground.net/leagues/%@/seasons.json"
 
-#define SEASONS_JSON @"http://dl.dropbox.com/u/11760590/leagues/%@/seasons.json"
+//#define SEASONS_JSON @"http://dl.dropbox.com/u/11760590/leagues/%@/seasons.json"
 
 @implementation SMSeasonsViewController
 @synthesize results;
@@ -58,7 +58,7 @@
     //NETWORK_OFF
 	
     self.results = [responseData yajl_JSON];
-    NSLog(@"result=%@", self.results);
+    NSLog(@"Seasons result=%@", self.results);
     
 	// In case an error is received, display the error using an alertview.
     if (self.results == nil || [self.results isKindOfClass:[NSDictionary class]]) 

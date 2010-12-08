@@ -36,12 +36,13 @@
 	if ( (leagueId == nil) || (seasonId == nil) ) //Current scores
 	{
 		request = [NSURLRequest requestWithURL:[NSURL URLWithString:CURRENT_SCORES_JSON]];
+		NSLog(@"Current scores url string = %@", url);
 		[NSURLConnection connectionWithRequest:request delegate:self];
 	}
 	else //All scores - Scores within a particular season & league
 	{
 		url = [NSString stringWithFormat:SCORES_JSON,leagueId,seasonId];
-		NSLog(@"Season url string = %@", url);
+		NSLog(@"All scores url string = %@", url);
 		request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
 		[NSURLConnection connectionWithRequest:request delegate:self];	
 	}
@@ -70,7 +71,7 @@
     //NETWORK_OFF
 	
     self.results = [responseData yajl_JSON];
-    NSLog(@"result=%@", self.results);
+    NSLog(@"Scores result=%@", self.results);
     
 	// In case an error is received, display the error using an alertview.
     if (self.results == nil || [self.results isKindOfClass:[NSDictionary class]]) 

@@ -11,9 +11,9 @@
 #import "SMSeasonsViewController.h"
 #import "SMLoginViewController.h"
 
-//#define LEAGUES_JSON @"http://nicsports.railsplayground.net/leagues.json"
+#define LEAGUES_JSON @"http://nicsports.railsplayground.net/leagues.json"
 
-#define LEAGUES_JSON @"http://dl.dropbox.com/u/11760590/leagues.json"
+//#define LEAGUES_JSON @"http://dl.dropbox.com/u/11760590/leagues.json"
 
 @implementation SMAllScoresViewController
 @synthesize results;
@@ -26,6 +26,7 @@
     self.results = [NSArray array];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:LEAGUES_JSON]];
+	NSLog(@"Leagues url string = %@", LEAGUES_JSON);
 	[NSURLConnection connectionWithRequest:request delegate:self];
 }
 
@@ -51,7 +52,7 @@
     //NETWORK_OFF
 	
     self.results = [responseData yajl_JSON];
-    NSLog(@"result=%@", self.results);
+    NSLog(@"Leagues result=%@", self.results);
     
 	// In case an error is received, display the error using an alertview.
     if (self.results == nil || [self.results isKindOfClass:[NSDictionary class]]) 

@@ -14,6 +14,7 @@
 	NSString *leagueId;
     NSMutableData *responseData;
     NSArray *results;
+	UIActivityIndicatorView *activityView;
 }
 
 @property (nonatomic, retain) NSArray *results;

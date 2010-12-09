@@ -24,6 +24,11 @@
     //NETWORK_ON    
     responseData = [[NSMutableData alloc] init];
     self.results = [NSArray array];
+	
+	activityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
+	[self.view addSubview:activityView];
+	activityView.center = CGPointMake(160, 152);
+	[activityView startAnimating];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:LEAGUES_JSON]];
 	NSLog(@"Leagues url string = %@", LEAGUES_JSON);
@@ -51,6 +56,7 @@
 {
     //NETWORK_OFF
 	
+	[activityView stopAnimating];
     self.results = [responseData yajl_JSON];
     NSLog(@"Leagues result=%@", self.results);
     

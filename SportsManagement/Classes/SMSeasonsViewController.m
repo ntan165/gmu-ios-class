@@ -29,6 +29,11 @@
     responseData = [[NSMutableData alloc] init];
     self.results = [NSArray array];
     
+	activityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
+	[self.view addSubview:activityView];
+	activityView.center = CGPointMake(160, 152);
+	[activityView startAnimating];
+	
 	NSString *url = [NSString stringWithFormat:SEASONS_JSON,self.leagueId];
 	NSLog(@"Season url string = %@", url);
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -57,6 +62,7 @@
 {
     //NETWORK_OFF
 	
+	[activityView stopAnimating];
     self.results = [responseData yajl_JSON];
     NSLog(@"Seasons result=%@", self.results);
     

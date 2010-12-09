@@ -31,6 +31,11 @@
     responseData = [[NSMutableData alloc] init];
     self.results = [NSArray array];
 	
+	activityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
+	[self.view addSubview:activityView];
+	activityView.center = CGPointMake(160, 152);
+	[activityView startAnimating];
+	
 	NSString *url;
 	NSURLRequest *request;
 	if ( (leagueId == nil) || (seasonId == nil) ) //Current scores
@@ -70,6 +75,7 @@
 {
     //NETWORK_OFF
 	
+	[activityView stopAnimating];
     self.results = [responseData yajl_JSON];
     NSLog(@"Scores result=%@", self.results);
     

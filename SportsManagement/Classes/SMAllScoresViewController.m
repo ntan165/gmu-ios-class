@@ -161,6 +161,8 @@
    	SMSeasonsViewController *vc = [[SMSeasonsViewController alloc] init];
 	NSDictionary *temp = [results objectAtIndex:indexPath.row];
     vc.leagueId = [temp objectForKey:@"id"];
+	vc.leagueName = [temp objectForKey:@"name"];
+	
 	NSLog(@"Passing leagueId = %@",vc.leagueId);
 	[self.navigationController pushViewController:vc animated:YES];
 	[vc release];

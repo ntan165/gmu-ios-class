@@ -18,6 +18,7 @@
 @implementation SMSeasonsViewController
 @synthesize results;
 @synthesize leagueId;
+@synthesize leagueName;
 
 #pragma mark -
 #pragma mark Initialization
@@ -111,10 +112,11 @@
     // Configure the cell...
 	NSDictionary *data = [results objectAtIndex:indexPath.row];
 	
-    cell.textLabel.text = [NSString stringWithFormat:@"Season %@",[data objectForKey:@"id"]];
-	cell.detailTextLabel.text = [NSString stringWithFormat:@"Start date: %@ - End date: %@",[data objectForKey:@"start_date"],[data objectForKey:@"end_date"]];
-    
-	return cell;}
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ season %@", self.leagueName, [data objectForKey:@"id"]];
+	cell.detailTextLabel.text = [NSString stringWithFormat:@"Start date : %@ - End date: %@", [data objectForKey:@"start_date"],[data objectForKey:@"end_date"]];
+    cell.textLabel.font = [UIFont systemFontOfSize:14];
+	return cell;
+}
 
 
 /*

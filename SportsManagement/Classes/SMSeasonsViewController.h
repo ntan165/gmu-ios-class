@@ -12,6 +12,7 @@
 @interface SMSeasonsViewController : UITableViewController 
 {	
 	NSString *leagueId;
+	NSString *leagueName;
     NSMutableData *responseData;
     NSArray *results;
 	UIActivityIndicatorView *activityView;
@@ -19,4 +20,5 @@
 
 @property (nonatomic, retain) NSArray *results;
 @property (nonatomic, retain) NSString *leagueId;
+@property (nonatomic, retain) NSString *leagueName;
 @end

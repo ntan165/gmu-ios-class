@@ -18,6 +18,4 @@
 
 @property (nonatomic, retain) NSArray *results;
 
-
-
 @end

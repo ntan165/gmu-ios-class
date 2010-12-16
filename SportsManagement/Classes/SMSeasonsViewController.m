@@ -13,8 +13,6 @@
 
 #define SEASONS_JSON @"http://nicsports.railsplayground.net/leagues/%@/seasons.json"
 
-//#define SEASONS_JSON @"http://dl.dropbox.com/u/11760590/leagues/%@/seasons.json"
-
 @implementation SMSeasonsViewController
 @synthesize results;
 @synthesize leagueId;
@@ -25,8 +23,8 @@
 
 - (void)viewDidLoad
 {
-	self.navigationItem.title = @"Seasons";
-    //NETWORK_ON    
+	self.navigationItem.title = @"Seasons";  
+	
     responseData = [[NSMutableData alloc] init];
     self.results = [NSArray array];
     
@@ -61,8 +59,6 @@
 }
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    //NETWORK_OFF
-	
 	[activityView stopAnimating];
     self.results = [responseData yajl_JSON];
     NSLog(@"Seasons result=%@", self.results);
@@ -82,20 +78,20 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    //NETWORK_OFF
     NSLog(@"Response failed. Reason: %@", error);
 }
 
 #pragma mark -
 #pragma mark Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return 1;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
+{
+     return 1;
 }
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
+{
     return [results count];
 }
 
@@ -117,46 +113,6 @@
     cell.textLabel.font = [UIFont systemFontOfSize:14];
 	return cell;
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 
 #pragma mark -

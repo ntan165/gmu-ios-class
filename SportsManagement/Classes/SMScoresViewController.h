@@ -18,6 +18,7 @@
 
     NSMutableData *responseData;
     NSArray *results;
+	
 	UIActivityIndicatorView *activityView;
 }
 
